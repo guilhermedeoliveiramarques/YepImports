@@ -29,6 +29,7 @@
         header("Location: ../index.php");
 
     }else{
+        echo "<script>alert('Informações incorretas, insira novos dados!);</script>";
         header("Location: ../public/cadastro.php");
     }
 
