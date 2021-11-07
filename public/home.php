@@ -38,6 +38,7 @@
 </head>
 <body>
     <h1>Olá, <?= $_SESSION['nome'] ?></h1>
+    <a href="./carrinho.php">Carrinho</a>
     <a href="../app/logout.php">Fazer Logout</a>
 </body>
 </html>
