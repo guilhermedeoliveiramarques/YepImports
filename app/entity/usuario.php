@@ -24,7 +24,6 @@ class Usuario{
                 // Criar uma sessão
                 $_SESSION['nome'] = $dado[nome];
                 $_SESSION['email'] = $dado[email];
-                $_SESSION['senha'] = $dado[senha];
 
                 return true;
             
