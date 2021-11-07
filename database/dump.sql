@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 07-Nov-2021 às 00:15
+-- Tempo de geração: 07-Nov-2021 às 01:16
 -- Versão do servidor: 5.7.24
 -- versão do PHP: 7.4.1
 
@@ -25,20 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tab_cadastro`
---
-
-CREATE TABLE `tab_cadastro` (
-  `id` int(10) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `telefone` varchar(20) NOT NULL,
-  `senha` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `tab_produto`
 --
 
@@ -49,15 +35,23 @@ CREATE TABLE `tab_produto` (
   `imagem` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tab_usuario`
+--
+
+CREATE TABLE `tab_usuario` (
+  `id` int(10) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `telefone` varchar(20) NOT NULL,
+  `senha` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Índices para tabelas despejadas
 --
-
---
--- Índices para tabela `tab_cadastro`
---
-ALTER TABLE `tab_cadastro`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `tab_produto`
@@ -66,19 +60,25 @@ ALTER TABLE `tab_produto`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- Índices para tabela `tab_usuario`
 --
+ALTER TABLE `tab_usuario`
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabela `tab_cadastro`
+-- AUTO_INCREMENT de tabelas despejadas
 --
-ALTER TABLE `tab_cadastro`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tab_produto`
 --
 ALTER TABLE `tab_produto`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tab_usuario`
+--
+ALTER TABLE `tab_usuario`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
