@@ -1,3 +1,17 @@
+<?php
+
+    if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)){
+        session_unset(); // remove todas as variáveis de sessão
+        session_destroy(); // destroi a sessão
+        echo "<script>
+                alert('Está página só pode ser acessa por usuário logado');
+                window.location.href='../index.php';
+            </script>";
+            
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
