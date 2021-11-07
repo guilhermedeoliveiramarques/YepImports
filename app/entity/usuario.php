@@ -22,7 +22,6 @@ class Usuario{
             if(password_verify($senha, $dado['senha'])){
 
             // Criar uma sessão
-            $_SESSION['id'] = $dado['id'];
             $_SESSION['nome'] = $dado['nome'];
             $_SESSION['email'] = $dado['email'];
             $_SESSION['senha'] = $dado['senha'];
