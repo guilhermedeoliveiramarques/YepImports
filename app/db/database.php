@@ -88,22 +88,19 @@ class Database{
 
     /**
      * Método responsável por selecionar campos no banco
-     * @param string $cep
-     * @return array $array
+     * @return array $retornoBanco
      */
-    public function selectProduto($cep){
+    public function selectProduto(){
         try{
-            $query = 'SELECT * FROM ' . $this->table . ' WHERE cep = :cep';
+            $query = 'SELECT * FROM ' . $this->table;
 
             $query = $this->connection->prepare($query);
 
-            $query->bindValue("cep", $cep);
-
             $query->execute();
 
-            $array = $query->fetch(PDO::FETCH_ASSOC);
+            $retornoBanco = $query->fetchAll(PDO::FETCH_ASSOC);
 
-            return $array;
+            return $retornoBanco;
             
          }catch(PDOException $e){
              die('ERROR: '.$e->getMessage());
