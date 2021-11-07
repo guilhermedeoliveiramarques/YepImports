@@ -19,7 +19,7 @@ class Usuario{
 
             $dado = $retornoBanco;
 
-            if($senha == $dado['senha']){
+            if(password_verify($senha, $dado['senha'])){
 
             // Criar uma sessão
             $_SESSION['id'] = $dado['id'];
