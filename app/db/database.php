@@ -57,24 +57,26 @@ class Database{
 
     /**
      * Método responsável por inserir usuario
-     * @param array $values [ filed => value]
-     * @return int
+     * @param array $values [ field => key]
+     * @return boolean
      */
     public function insertUsuario($values){
         try{
 
-            $query = "INSERT INTO ".$this->table." (cep,logradouro,bairro,localidade,uf) VALUES (:cep,:logradouro,:bairro,:localidade,:uf)"; 
+            $sqlQuery = "INSERT INTO ".$this->table." (nome, email, senha, telefone) VALUES (:nome,:email,:senha,:telefone)"; 
                         
                                  
-            $query = $this->connection->prepare($query);
+            $sqlQuery = $this->connection->prepare($sqlQuery);
 
-            $query->bindParam(":cep", $values->cep);
-            $query->bindParam(":logradouro", $values->logradouro);
-            $query->bindParam(":bairro", $values->bairro);
-            $query->bindParam(":localidade", $values->localidade);
-            $query->bindParam(":uf", $values->uf);
+            $sqlQuery->bindValue(":nome", $values[nome]);
+            $sqlQuery->bindValue(":email", $values[email]);
+            $sqlQuery->bindValue(":senha", $values[senha]);
+            $sqlQuery->bindValue(":telefone", $values[telefone]);
 
-            if($query->execute()){
+
+
+            if($sqlQuery->execute()){
+                
                 return true;
             }
  
