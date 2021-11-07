@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 07-Nov-2021 às 01:16
+-- Tempo de geração: 07-Nov-2021 às 15:10
 -- Versão do servidor: 5.7.24
 -- versão do PHP: 7.4.1
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tab_produto` (
   `id` int(10) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `preco` varchar(140) NOT NULL,
+  `preco` decimal(10,2) NOT NULL,
   `imagem` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -45,8 +45,8 @@ CREATE TABLE `tab_usuario` (
   `id` int(10) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telefone` varchar(20) NOT NULL,
-  `senha` varchar(100) NOT NULL
+  `senha` varchar(200) NOT NULL,
+  `telefone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -63,7 +63,8 @@ ALTER TABLE `tab_produto`
 -- Índices para tabela `tab_usuario`
 --
 ALTER TABLE `tab_usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
