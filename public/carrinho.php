@@ -45,10 +45,10 @@
         $_SESSION['itens'] = array();
     }
 
-    // Verificar se o produto existe no carrinho, caso exista, incrementa 
+    // Verificar se o produto existe no carrinho, caso já exista, incrementa 
     if(isset($_GET['add']) && $_GET['add'] == "carrinho"){
 
-        // Adicionar ao carrinho
+        // Armazenar o ID
         $idProduto = $_GET['id'];
 
         if(isset($_SESSION['itens'][$idProduto])){
@@ -90,7 +90,8 @@
                 echo '<p>Preço: R$ ' .$produtos[0]["preco"]. '</p>';
                 echo '<p>Quantidade: ' .$quantidade. '</p>';
                 echo '<p>Valor Total: R$ ' .$totalPreco. '</p>';
-                echo '<img src="' .$produtos[0]["image"]. '" alt="Camisa de Time">';
+                echo '<img src="' .$produtos[0]["imagem"]. '" alt="Camisa de Time">';
+                echo '<a href="../app/removerProduto.php?remover=carrinho&id=' .$idProduto. '">Remover do carrinho</a>';
                 echo '<hr>';
 
             }
