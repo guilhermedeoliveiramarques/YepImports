@@ -3,17 +3,6 @@
     // Iniciando sessão ou resumindo sessão existe 
     session_start(); 
 
-    //Auto-Load
-    require __DIR__ .'/../vendor/autoload.php';
-
-    use \App\Db\Database;
-
-    // Instanciando Objetos
-    $database = new Database("tab_produto");
-
-    // Armazenando retorno de Produtos do banco
-    $retornoBanco = $database->selectProduto();
-
     if(!isset($_SESSION["email"]) || !isset($_SESSION["nome"])){
 
         $_SESSION = array();
@@ -39,6 +28,39 @@
 
 ?>
 
+<?php
+
+    //Auto-Load
+    require __DIR__ .'/../vendor/autoload.php';
+
+    use \App\Db\Database;
+
+    // Instanciar Objeto
+    $database = new Database("tab_produto");
+
+    use \PDO;
+
+    // Verificar se já existe essa sessão, caso contrário, é criada
+    if(!isset($_SESSION['itens'])){
+        $_SESSION['itens'] = array();
+    }
+
+    // Verificar se o produto existe no carrinho, caso exista, incrementa 
+    if(isset($_GET['add']) && $_GET['add'] == "carrinho"){
+
+        // Adicionar ao carrinho
+        $idProduto = $_GET['id'];
+
+        if(isset($_SESSION['itens'][$idProduto])){
+            $_SESSION['itens'][$idProduto] += 1;
+        }else{
+            $_SESSION['itens'][$idProduto] = 1;
+        }
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -50,14 +72,33 @@
 <body>
     <h1>Olá, <?= $_SESSION['nome'] ?></h1>
 
-    <?php foreach($retornoBanco as $produto): ?>
-        
-        <h2>Nome Produto: <?= $produto['nome']?></h2>
-        <p>Preço: <?= $produto['preco']?></p>
-        <img src="<?= $produto['imagem']?>" alt="Camisa de Time">
+    <?php 
+    
+        // Exibir carrinho
+        if(count($_SESSION['itens']) == 0){
+            echo "Carrinho Vazio";
 
-    <?php  endforeach; ?>
+        }else{
+            foreach($_SESSION['itens'] as $idProduto => $quantidade){
+    
+                $produtos = $database->selectProdutoById($idProduto);
+                
 
+                $totalPreco = $quantidade * $produtos[0]["preco"]; 
+
+                echo '<h3>Nome: ' .$produtos[0]["nome"]. '</h3>';
+                echo '<p>Preço: R$ ' .$produtos[0]["preco"]. '</p>';
+                echo '<p>Quantidade: ' .$quantidade. '</p>';
+                echo '<p>Valor Total: R$ ' .$totalPreco. '</p>';
+                echo '<img src="' .$produtos[0]["image"]. '" alt="Camisa de Time">';
+                echo '<hr>';
+
+            }
+        }
+
+    ?>
+ 
+    <a href="./home.php">Home</a>
     <a href="../app/logout.php">Fazer Logout</a>
 </body>
 </html>

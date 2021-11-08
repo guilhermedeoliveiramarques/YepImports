@@ -3,6 +3,17 @@
     // Iniciando sessão ou resumindo sessão existe 
     session_start(); 
 
+    //Auto-Load
+    require __DIR__ .'/../vendor/autoload.php';
+
+    use \App\Db\Database;
+
+    // Instanciando Objetos
+    $database = new Database("tab_produto");
+
+    // Armazenando retorno de Produtos do banco
+    $retornoBanco = $database->selectProduto();
+
     if(!isset($_SESSION["email"]) || !isset($_SESSION["nome"])){
 
         $_SESSION = array();
@@ -37,8 +48,20 @@
     <title>Yep Imports - Home</title>
 </head>
 <body>
+
     <h1>Olá, <?= $_SESSION['nome'] ?></h1>
+
+    <?php foreach($retornoBanco as $produto): ?>
+        
+        <h2>Nome Produto: <?= $produto['nome']?></h2>
+        <p>Preço: R$ <?= $produto['preco']?></p>
+        <img src="<?= $produto['image']?>" alt="Camisa de Time">
+        <a href="carrinho.php?add=carrinho&id=<?= $produto['id']?>">Adicionar ao carrinho</a><br>
+
+    <?php  endforeach; ?>
+    
     <a href="./carrinho.php">Carrinho</a>
     <a href="../app/logout.php">Fazer Logout</a>
+
 </body>
 </html>
