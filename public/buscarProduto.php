@@ -58,7 +58,7 @@
     <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-    <title>Yep Imports - Resultado da Busca</title>
+    <title>Yep Imports - Resultados</title>
 </head>
 <body>
 
