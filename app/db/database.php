@@ -130,4 +130,27 @@ class Database{
          }
     }
 
+     /**
+     * Método responsável por selecionar campos no banco pelo nome
+     * @return array $retornoBanco
+     */
+    public function selectProdutoByNome($nome){
+        try{
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE nome LIKE :nome';
+
+            $query = $this->connection->prepare($query);
+
+            $query->bindValue("nome", $nome);
+
+            $query->execute();
+
+            $retornoBanco = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            return $retornoBanco;
+            
+         }catch(PDOException $e){
+             die('ERROR: '.$e->getMessage());
+         }
+    }
+
 }
