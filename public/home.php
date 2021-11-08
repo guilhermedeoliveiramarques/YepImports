@@ -55,7 +55,7 @@
         
         <h2>Nome Produto: <?= $produto['nome']?></h2>
         <p>Preço: R$ <?= $produto['preco']?></p>
-        <img src="<?= $produto['image']?>" alt="Camisa de Time">
+        <img src="<?= $produto['imagem']?>" alt="Camisa de Time">
         <a href="carrinho.php?add=carrinho&id=<?= $produto['id']?>">Adicionar ao carrinho</a><br>
 
     <?php  endforeach; ?>
