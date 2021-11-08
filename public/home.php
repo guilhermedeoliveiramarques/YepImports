@@ -54,6 +54,12 @@
 
     <h1>Olá, <?= $_SESSION['nome'] ?></h1>
 
+    <h2>Pesquisar</h2>
+    <form action="./buscarProduto.php" method="GET">
+        <input type="text" name="nomeCamiseta" placeholder="Insira o nome da camiseta">
+        <button>Buscar</button>
+    </form><br><br><br>
+
     <?php foreach($retornoBanco as $produto): ?>
         
         <h2>Nome Produto: <?= $produto['nome']?></h2>
