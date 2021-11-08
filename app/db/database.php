@@ -107,4 +107,27 @@ class Database{
          }
     }
 
+    /**
+     * Método responsável por selecionar campos no banco pelo ID
+     * @return array $retornoBanco
+     */
+    public function selectProdutoById($id){
+        try{
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
+
+            $query = $this->connection->prepare($query);
+
+            $query->bindValue("id", $id);
+
+            $query->execute();
+
+            $retornoBanco = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            return $retornoBanco;
+            
+         }catch(PDOException $e){
+             die('ERROR: '.$e->getMessage());
+         }
+    }
+
 }
